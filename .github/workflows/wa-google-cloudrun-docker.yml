@@ -67,7 +67,7 @@ jobs:
         run: gcloud auth configure-docker --quiet
 
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME .
+        run: docker buildx build --platform linux/amd64 -t $IMAGE_NAME . --load
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
